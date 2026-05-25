@@ -1,0 +1,6 @@
+{
+  "name": "Pulse",
+  "description": "A high-performance fitness tracker with real-time stats, interactive workouts, trend dashboards, and Gemini-powered smart coaching.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

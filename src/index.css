@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Fira+Code:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--custom-font-sans, "Inter"), "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--custom-font-mono, "JetBrains Mono"), "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* Custom theme CSS state variables declarations */
+:root {
+  --theme-bg: #020617;
+  --theme-text: #f8fafc;
+  --theme-text-muted: #94a3b8;
+  --theme-accent: #3b82f6;
+  --theme-accent-rgb: 59, 130, 246;
+  --theme-accent-hover: #2563eb;
+  --theme-glass-bg: rgba(255, 255, 255, 0.08);
+  --theme-glass-border: rgba(255, 255, 255, 0.12);
+  --custom-font-sans: "Inter";
+  --custom-font-mono: "JetBrains Mono";
+  --orb-1-color: #3b82f6;
+  --orb-2-color: #a855f7;
+  --orb-3-color: #ec4899;
+  --orb-opacity: 0.25;
+}
+
+/* Custom dark mode kinetic pulse scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--theme-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-accent);
+}
+
+body {
+  background-color: var(--theme-bg);
+  color: var(--theme-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Frosted Glass Core Styles */
+.glass {
+  background: var(--theme-glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--theme-glass-border);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-card {
+  background: var(--theme-glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--theme-glass-border);
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* Dynamic Ambient light orbs */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 0;
+  pointer-events: none;
+  transition: background-color 0.5s ease, opacity 0.5s ease;
+}
+
+.orb-1 {
+  width: 400px;
+  height: 400px;
+  background: var(--orb-1-color);
+  top: -100px;
+  right: -100px;
+  opacity: var(--orb-opacity);
+}
+
+.orb-2 {
+  width: 350px;
+  height: 350px;
+  background: var(--orb-2-color);
+  bottom: -50px;
+  left: -50px;
+  opacity: calc(var(--orb-opacity) * 0.8);
+}
+
+.orb-3 {
+  width: 300px;
+  height: 300px;
+  background: var(--orb-3-color);
+  top: 300px;
+  left: 200px;
+  opacity: calc(var(--orb-opacity) * 0.4);
+}
+
+/* Glow effects */
+.glow-effect {
+  filter: drop-shadow(0 0 8px rgba(var(--theme-accent-rgb), 0.45));
+}
+
+.text-glow {
+  text-shadow: 0 0 12px rgba(var(--theme-accent-rgb), 0.4);
+}
+
+/* Overrides to make standard elements adapt to CSS Variables */
+.text-blue-400 {
+  color: var(--theme-accent) !important;
+}
+
+.bg-blue-500 {
+  background-color: var(--theme-accent) !important;
+}
+
+.bg-blue-500:hover {
+  background-color: var(--theme-accent-hover) !important;
+}
+
+.border-blue-400 {
+  border-color: var(--theme-accent) !important;
+}
+
+.border-blue-500\/20 {
+  border-color: rgba(var(--theme-accent-rgb), 0.2) !important;
+}
+
+.bg-blue-500\/10 {
+  background-color: rgba(var(--theme-accent-rgb), 0.1) !important;
+}
+
+.shadow-blue-500\/35 {
+  box-shadow: 0 4px 15px rgba(var(--theme-accent-rgb), 0.35) !important;
+}
+
+.shadow-blue-500\/25, .shadow-blue-500\/10 {
+  box-shadow: 0 4px 12px rgba(var(--theme-accent-rgb), 0.2) !important;
+}
+
+.text-slate-400 {
+  color: var(--theme-text-muted) !important;
+}
+
+.text-slate-300 {
+  color: var(--theme-text) !important;
+  opacity: 0.9;
+}
+
+/* Pulse animation */
+@keyframes heart-pulse {
+  0% { transform: scale(1); opacity: 0.96; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.96; }
+}
+
+.animate-pulse-heart {
+  animation: heart-pulse 1.2s infinite ease-in-out;
+}
+
